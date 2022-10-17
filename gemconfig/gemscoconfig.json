@@ -1,0 +1,64 @@
+{
+    "forceignore": [
+        "\n#STARTIGNORE",
+        "\nbase-objects/main/default/permissionsets/Delegated_Admin_CCP.permissionset-meta.xml",
+        "\n#ENDIGNORE"
+    ],
+    "postscratchorgcreate": [
+        {
+            "type": "command",
+            "value": [
+                "sfdx force:org:open",
+                "sfdx force:data:record:update -s User -w \"Name='User User'\" -v \"UserPermissionsKnowledgeUser=true\""
+            ]
+        },
+        {
+            "type": "api",
+            "method": "POST",
+            "url": "/services/data/v50.0/sobjects/OrgWideEmailAddress",
+            "body": {
+                "Address": "b.wongkai@gmail.com",
+                "DisplayName": "displayname",
+                "IsAllowAllProfiles": true
+            }
+        }
+    ],
+    "predeployment": [
+        {
+            "type": "package",
+            "name": "Salesforce.com CRM Dashboards",
+            "packageid": "04t50000000EcdrAAC"
+        }    
+    ],
+    "prepush": [
+        {
+            "type":"replace",
+            "from": "test-[A-Za-z0-9@.\\-]*@example.com",
+            "to": "$username",
+            "path": [
+                "base-objects/main/default/settings/Case.settings-meta.xml"
+            ]
+        }
+    ],
+    "postdeployment": [
+        {
+            "type":"command",
+            "value": [
+                "sfdx force:user:permset:assign --permsetname Manage_Encryption_Keys",
+                "sfdx force:user:permset:assign --permsetname Apex_Debugger",
+                "sfdx gem:data:etl -n ./data/Accounts.csv -o Account -i Id -a Account:Id:Name -f",
+                "sfdx gem:data:etl -n ./data/Contacts.csv -o Contact -i Id -a contact:Id:Name,Account:AccountId:Name -f"
+            ]
+        }
+    ],
+    "postcleanup": [
+        {
+            "type":"replace",
+            "from": "test-[A-Za-z0-9@.\\-]*@example.com",
+            "to": "test-username@example.com",
+            "path": [
+                "base-objects/main/default/settings/Case.settings-meta.xml"
+            ]
+        }
+    ]
+}

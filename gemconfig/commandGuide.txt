@@ -1,0 +1,70 @@
+# Create a scratchOrg
+# Parameters:
+# -u: ScratchOrg Name
+# -d: Days to expire
+sfdx gem:org:create -u orgname -d days
+
+# push to ScratchOrg: Reverts to scratchOrg settings
+# Parameters:
+# -u: ScratchOrg Name
+sfdx gem:org:push -u OrgName
+
+# Deploy to sandbox or Production
+# Parameters:
+# -u: Sandbox Name
+# -t: org type, values [sandbox,production]
+# -d: deployment type, values [checkonly,deploy]
+# -o: optional - folder or files to omit e.g "foldername/main/default/entitlementProcesses,foldername/main/default/applications/Capgemini.app-meta.xml" 
+# -i: optional - folder or files to include e.g "foldername/main/default/entitlementProcesses,foldername/main/default/applications/Capgemini.app-meta.xml" 
+sfdx gem:org:deploy -u OrgName -t sandbox -d deploy
+
+# Deploy to sandbox or Production omitting files or folders 
+sfdx gem:org:deploy -u OrgName -t sandbox -d deploy -o "foldername/main/default/entitlementProcesses,drs-panel,legalportal,claimantportal,decmakerportal,sirainsportal"
+
+# Deploy to sandbox or Production including files or folders
+sfdx gem:org:deploy -u OrgName -t sandbox -d deploy -i "foldername/main/default/applications"
+
+# Deploy delta changes to sandbox or Production
+sfdx gem:org:diff -a SourceBranch -b TargetBranch -u OrgName -t sandbox -d checkonly -l NoTestRun|RunLocalTests
+
+# Deploy delta changes to sandbox or Production
+sfdx gem:org:diff -a SourceBranch -b TargetBranch -u OrgName -t sandbox -d checkonly -l RunSpecifiedTests -r "CTP_Additional_Information_CC_Test,CTP_CaseItemTriggerHandler_Test,CTP_CaseItemTriggerHandler_Test2,CTP_CaseItemTriggerHandler1_Test,testCTP_RequestReply,CTP_RequestReply_Test,CTP_Review_Further_Tab_Controller_Test,DRS_BarristerService_Test,DRS_CaseItemTriggerHandler_Test,DRS_DM_PaymentService_Test,DRS_UtilityTest,WCFCW_BoxIntegrationUtilities_Tests,CTP_CaseItemForm_CC_Test,CTP_ContactUsFeedbackFormController_Test,CTP_MyApplicationLoad_Test,CTP_Review_Further_Tab_Controller_Test"
+
+
+# Data Command
+sfdx gem:data:etl -n filename -o ObjectName -i Id -a object:MappedField:UniqueField -u orgname
+sfdx gem:data:etl -n filename -o ObjectName -i Id -a DRS_Specialty__c:Id -u orgname
+sfdx gem:data:etl -n ./mdapioutput/data/DRS_Specialty_Tag__c.csv -o DRS_Specialty_Tag__c -i UniqueKey__c -a sked__Tag__c:Tag__c,DRS_Specialty__c:Specialty__c -u siradrs -f
+sfdx gem:data:etl -n ./data/contact.csv -o Contact -i Id -a contact:Id:Name,recordtype:RecordTypeId:Name,Account:AccountId:Name -u siradrs2 -f
+
+# Delete data
+# add -f to execute
+sfdx gem:data:delete -q "SELECT Id from sobject" -o object -u orgname -f 
+
+
+DEMO 
+
+Pre-requisite
+a. Create a Sandbox Org: lunchsandbox
+b. Load data, Accounts and Contacts
+c. Install an managed app 
+
+1. Create a scratchOrg (exact replica of Sandbox)
+   - sfdx gem:org:create -u scolearndemo -d 2
+2. Show the data loaded, managed app
+3. Update Logo 
+4. Pull changes
+5. deploy changes to sandbox
+   - sfdx gem:org:diff -a feature-capgemdx-demo -b develop-capgemdx-demo -u sboxlearndemo -t sandbox -d deploy -l NoTestRun
+
+Load Account data
+- sfdx gem:data:etl -n ./data/Account.csv -o Account -i Id -a Account:Id:Name -u lunchsandbox -f
+
+Load Contact data
+- sfdx gem:data:etl -n ./data/Contacts.csv -o Contact -i Id -a contact:Id:Name,Account:AccountId:Name -u lunchsandbox -f
+
+Enable Shared Contact feature
+- sfdx gem:org:sharedcontacts -u scolearndemo
+
+Branch Scafolding
+- sfdx gem:org:branching -n branchname -b sourcebranch

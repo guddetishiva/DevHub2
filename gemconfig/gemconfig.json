@@ -1,0 +1,39 @@
+{
+    "orgmetadatafilepath": "./mdapioutput/orgmetadata/",
+    "outputdatafilepath": "./mdapioutput/data/",
+    "logfile": "./mdapioutput/log/capgemdx.log",
+    "logsize": 102400,
+    "manualprompt": "false",
+    "promptmessage": ["Please enable the following (manual settings):",
+        "Activate 'Allow Users to Relate Multiple Contacts to Tasks and Events'",
+        "Allow users to relate a contact to multiple accounts"],
+    "diffRenameLimit": "10000",
+    "packageWaitTime": 30,
+    "apiversion": "51.0",
+    "filesignore": [
+        "data/*",
+        "scripts/*",
+        "config/*",
+        "unused/*",
+        "**jsconfig.json",
+        "**.eslintrc.json",
+        "devops/*",
+        "sfdx-project.json",
+        "gemconfig/*",
+        ".vim-force.com/session.properties",
+        "**.DS_Store",
+        "**.yml",
+        "**.audience*",
+        "*.md",
+        ".sf/",
+        ".*"
+    ],
+    "diffsuppressfolders": [],
+    "branching": [
+        "develop/", "feature/"
+    ],
+    "contentversionurl": "/services/data/v50.0/sobjects/ContentVersion",
+    "gitplatform": "bitbucket",
+    "gitpullrequesturl": "https://api.bitbucket.org/2.0/repositories/toyotaau/sfdx-tmca/pullrequests",
+    "metadataChangeAlert": [""]
+}

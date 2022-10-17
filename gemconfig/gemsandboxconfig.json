@@ -1,0 +1,21 @@
+{
+    "forceignore": [
+        "\n#STARTIGNORE",
+        "\nbase-objects/main/default/permissionsets/Delegated_Admin_CCP.permissionset-meta.xml",
+        "\nbase-objects/main/default/permissionsets/Apex_Debugger.permissionset-meta.xml",
+        "\nbase-objects/main/default/settings/Case.settings-meta.xml",
+        "\n#ENDIGNORE"
+    ],
+    "predeployment": [
+    ],
+    "postdeployment": [
+    ],
+    "diffConfig" : {
+        "predeployment" : [
+        ],
+        "testClasses" : "\"\""
+    },
+    "postcleanup": [
+        
+    ]
+}

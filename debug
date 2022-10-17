@@ -1,0 +1,23 @@
+[2022-10-07T15:56:50.565] [INFO] default - API Callout:
+[2022-10-07T15:56:50.569] [INFO] default - installing package: Salesforce.com CRM Dashboards
+[2022-10-07T15:56:50.569] [DEBUG] default - sfdx force:package:install -r -s AdminsOnly -u so2 --package 04t50000000EcdrAAC -w 30
+[2022-10-07T15:57:26.554] [INFO] default - Installation: Successful
+[2022-10-07T15:57:26.554] [DEBUG] default - find: test-[A-Za-z0-9@.\-]*@example.com , replace with: test-ulxhcmy3dbf3@example.com
+[2022-10-07T15:57:26.557] [INFO] default - DEPLOYING: METADATA so2
+[2022-10-07T15:57:30.735] [INFO] default - DEPLOYMENT: SUCCESSFUL
+[2022-10-07T15:57:30.736] [INFO] default - executing: sfdx force:user:permset:assign --permsetname Manage_Encryption_Keys -u so2 --json
+[2022-10-07T15:57:35.217] [ERROR] default - COMMAND ERROR: sfdx force:user:permset:assign --permsetname Manage_Encryption_Keys Error: Command failed: sfdx force:user:permset:assign --permsetname Manage_Encryption_Keys -u so2 --json
+[2022-10-07T15:57:35.217] [INFO] default - executing: sfdx force:user:permset:assign --permsetname Apex_Debugger -u so2 --json
+[2022-10-07T15:57:39.888] [ERROR] default - COMMAND ERROR: sfdx force:user:permset:assign --permsetname Apex_Debugger Error: Command failed: sfdx force:user:permset:assign --permsetname Apex_Debugger -u so2 --json
+[2022-10-07T15:57:39.888] [INFO] default - executing: sfdx gem:data:etl -n ./data/Accounts.csv -o Account -i Id -a Account:Id:Name -f -u so2 --json
+[2022-10-07T15:57:45.464] [INFO] default - Successful
+[2022-10-07T15:57:45.464] [INFO] default - executing: sfdx gem:data:etl -n ./data/Contacts.csv -o Contact -i Id -a contact:Id:Name,Account:AccountId:Name -f -u so2 --json
+[2022-10-07T15:57:51.246] [INFO] default - Successful
+[2022-10-07T15:57:51.246] [INFO] default - POST DEPLOYMENT: COMPLETED
+[2022-10-07T15:57:51.246] [DEBUG] default - find: 
+#STARTIGNORE , replace with: 
+[2022-10-07T15:57:51.248] [DEBUG] default - find: 
+base-objects/main/default/permissionsets/Delegated_Admin_CCP.permissionset-meta.xml , replace with: 
+[2022-10-07T15:57:51.250] [DEBUG] default - find: 
+#ENDIGNORE , replace with: 
+[2022-10-07T15:57:51.251] [DEBUG] default - find: test-[A-Za-z0-9@.\-]*@example.com , replace with: test-username@example.com

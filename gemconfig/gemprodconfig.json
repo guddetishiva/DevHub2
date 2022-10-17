@@ -1,0 +1,45 @@
+{
+    "forceignore": [
+        "\n#STARTIGNORE",
+        "\n#ENDIGNORE"
+    ],
+    "postscratchorgcreate": [
+        {
+            "type": "command",
+            "value": ""
+        },
+        {
+            "type":"replace",
+            "from": "",
+            "to": "",
+            "path":""
+        },
+        {
+            "type":"package",
+            "name":""
+        }
+    ],
+    "predeployment": [
+    ],
+    "postdeployment": [
+    ],
+    "diffConfig" : {
+        "predeployment" : [
+        ],
+        "testClasses" : "\"CTP_Additional_Information_CC_Test,CTP_CaseItemTriggerHandler_Test,CTP_CaseItemTriggerHandler_Test2,CTP_CaseItemTriggerHandler1_Test,testCTP_RequestReply,CTP_RequestReply_Test,CTP_Review_Further_Tab_Controller_Test,DRS_BarristerService_Test,DRS_DM_PaymentService_Test,DRS_UtilityTest,CTP_CaseItemForm_CC_Test,DRS_CaseItemForm_CC_Test2,CTP_ContactUsFeedbackFormController_Test,CTP_MyApplicationLoad_Test,DRS_AdditionalInformation_CX_Test,DRS_Case_CC_Test,DRS_caseActionDashboardCLS_Test,DRS_CaseContactRelTriggerHelper_Test,DRS_CaseItem_CX_Test,DRS_CaseItemLineItemAssociationHnd_Test,DRS_CaseItemShareQueueable_Test,DRS_Dashboard_CC_Test,DRS_DM_AssessmentController_CC_Test,DRS_DM_AssessmentController_Test,DRS_DM_AssessmentDecision_CC_Test,DRS_DM_JobAllocationTrigger_Test,DRS_DM_TriggerEmailNotification_Test,DRS_DM_WithoutSharingServiceTest,DRS_DocumentAnnotation_WS_Test,DRS_FurtherApplication_Test,DRS_MessageCC_Test,DRS_ShareInsurerCaseActions_Test,WCFCW_BoxIntegrationUtilities_Tests,WCFCW_ApplicationSubmitUtilities_Test,WCFCW_CaseActionUpload_CC_Test,WCFCW_CongaTemplateQueryHelper_Test,WCFCW_Determination_CC_Test,WCFCW_FurtherReviewDisputeHandler_Test,WCFCWBoxIntegrationUtiliForConga_Test,DRS_CaseContactRelTriggerHelper_Test,DRS_DM_JobAllocationTrigger_Test,CTP_CreateInjuryTreatmentFromDisputeTest,CTP_DisputeRec_Creation_Allocation_Test,CTP_InjuriesTreatmentForDispute_Test,CTP_Public_MyApp_HeaderController_Test,CTP_StartNewClaimAppController_Test,CTP_TestData_Test,DRS_DisputeAllocationController_Test\""
+    },
+    "postcleanup": [
+        {
+            "type":"replace",
+            "from": "\n#STARTIGNORE",
+            "to": "",
+            "path":".forceignore"
+        },
+        {
+            "type":"replace",
+            "from": "\n#ENDIGNORE",
+            "to": "",
+            "path":".forceignore"
+        }
+    ]
+}
